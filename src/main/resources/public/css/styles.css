@@ -38,7 +38,20 @@ body {
     padding: 15px;
 }
 
+/* Jake's styles */
+whitetext {
+    font: 30px 'Helvetica Neue', Helvetica, sans-serif;
+    color: white;
+}
 
+whitetext2 {
+    font: 14px 'Helvetica Neue', Helvetica, sans-serif;
+    color: white;
+}
+whitetitle {
+    font: 42px '', Verdana, sans-serif;
+    color: white;
+}
 
 
 /*
