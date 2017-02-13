@@ -27,7 +27,7 @@ background-color: orange;
 body {
     font: 14px 'Helvetica Neue', Helvetica, sans-serif;
     line-height: 1.4em;
-    background-image: url("galaxy-of-ricks.jpg");
+    background-image: url("assets/galaxy-of-ricks.jpg");
     min-width: 230px;
     max-width: 550px;
     margin: 0 auto;
@@ -38,7 +38,20 @@ body {
     padding: 15px;
 }
 
+/* Jake's styles */
+whitetext {
+    font: 30px 'Helvetica Neue', Helvetica, sans-serif;
+    color: white;
+}
 
+whitetext2 {
+    font: 14px 'Helvetica Neue', Helvetica, sans-serif;
+    color: white;
+}
+whitetitle {
+    font: 42px '', Verdana, sans-serif;
+    color: white;
+}
 
 
 /*
