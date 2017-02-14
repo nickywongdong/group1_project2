@@ -38,12 +38,14 @@ function placeShip() {
 }
 
 
+
+
 function fire(){
- console.log($( "#rowFire" ).val());
  console.log($( "#colFire" ).val());
+   console.log($( "#rowFire" ).val());
 //var menuId = $( "ul.nav" ).first().attr( "id" );
    var request = $.ajax({
-     url: "/fire/"+$( "#rowFire" ).val()+"/"+$( "#colFire" ).val(),
+     url: "/fire/"+$( "#colFire" ).val()+"/"+$( "#rowFire" ).val(),
      method: "post",
      data: JSON.stringify(gameModel),
      contentType: "application/json; charset=utf-8",
@@ -62,13 +64,68 @@ function fire(){
 
 }
 
+function scan(){
+ console.log($( "#colScan" ).val());
+   console.log($( "#rowScan" ).val());
+//var menuId = $( "ul.nav" ).first().attr( "id" );
+   var request = $.ajax({
+     url: "/scan/"+$( "#colScan" ).val()+"/"+$( "#rowScan" ).val(),
+     method: "post",
+     data: JSON.stringify(gameModel),
+     contentType: "application/json; charset=utf-8",
+     dataType: "json"
+   });
+
+   request.done(function( currModel ) {
+     displayGameState(currModel);
+     gameModel = currModel;
+
+   });
+
+   request.fail(function( jqXHR, textStatus ) {
+     alert( "Request failed: " + textStatus );
+   });
+
+}
+
+
 function log(logContents){
     console.log(logContents);
 }
 
 function displayGameState(gameModel){
+<<<<<<< HEAD
     $( '#MyBoard td'  ).css("background-color", "blue");
     $( '#TheirBoard td'  ).css("background-color", "blue");
+=======
+$( '#MyBoard td'  ).css("background-color", "blue");
+$( '#TheirBoard td'  ).css("background-color", "blue");
+
+if(gameModel.scanResult){
+alert("Scan found at least one Ship")}
+else{
+alert("Scan found no Ships")}
+
+displayShip(gameModel.aircraftCarrier);
+displayShip(gameModel.battleship);
+displayShip(gameModel.cruiser);
+displayShip(gameModel.destroyer);
+displayShip(gameModel.submarine);
+
+for (var i = 0; i < gameModel.computerMisses.length; i++) {
+   $( '#TheirBoard #' + gameModel.computerMisses[i].Across + '_' + gameModel.computerMisses[i].Down ).css("background-color", "green");
+}
+for (var i = 0; i < gameModel.computerHits.length; i++) {
+   $( '#TheirBoard #' + gameModel.computerHits[i].Across + '_' + gameModel.computerHits[i].Down ).css("background-color", "red");
+}
+
+for (var i = 0; i < gameModel.playerMisses.length; i++) {
+   $( '#MyBoard #' + gameModel.playerMisses[i].Across + '_' + gameModel.playerMisses[i].Down ).css("background-color", "green");
+}
+for (var i = 0; i < gameModel.playerHits.length; i++) {
+   $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
+}
+>>>>>>> 51f9466255b93a99ecb99a89337ae39edd55547e
 
     displayShip(gameModel.aircraftCarrier);
     displayShip(gameModel.battleship);
