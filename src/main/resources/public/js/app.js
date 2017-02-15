@@ -149,15 +149,15 @@ function displayShip(ship){
 
 function createGameBoards() {
   // Create table
-  var board = $('.gameBoard');
-  board.append("<table>");
+  var table = $("<table>").appendTo('.gameBoard');
 
   // Create squares
   for (var y = 1; y <= 10; y++){
-    board.append("<tr id='Row" + y + "'>");
-    for (var x = 1; x <= 10; x++)
-    board.append("<td id='" + y + "_" + x + "'>");
-    board.append("</tr>");
+    var tableRow = $("<tr id='Row" + y + "'>").appendTo(table);
+    for (var x = 1; x <= 10; x++){
+        tableRow.append("<td id='" + y + "_" + x + "'>");
+    }
+    table.append("</tr>");
   }
-  board.append("</table>");
+  $("</table>").appendTo('.gameBoard');
 }
