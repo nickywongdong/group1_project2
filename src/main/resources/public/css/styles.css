@@ -13,14 +13,14 @@ background-color: light-gray;
 .gameBoard td {
 width: 32px;
 height:32px;
-background-color: #84ccd6;
+background-color: #25383c;
 }
 
 table, th, td {
    border: 1px solid white;
 }
 
-#MyBoard.ship{
+#MyBoard .ship{
 background-color: orange;
 }
 
