@@ -9,6 +9,7 @@ $( document ).ready(function() {
 
    // Create gameBoards
    createGameBoards();
+   setOnTouchEvents();
 });
 
 function placeShip() {
@@ -38,12 +39,12 @@ function placeShip() {
 }
 
 
-function fire(){
+function fire(row, col){
  console.log($( "#rowFire" ).val());
  console.log($( "#colFire" ).val());
 //var menuId = $( "ul.nav" ).first().attr( "id" );
    var request = $.ajax({
-     url: "/fire/"+$( "#rowFire" ).val()+"/"+$( "#colFire" ).val(),
+     url: "/fire/"+row+"/"+col,
      method: "post",
      data: JSON.stringify(gameModel),
      contentType: "application/json; charset=utf-8",
@@ -67,8 +68,8 @@ function log(logContents){
 }
 
 function displayGameState(gameModel){
-    $( '#MyBoard td'  ).css("background-color", "blue");
-    $( '#TheirBoard td'  ).css("background-color", "blue");
+    $( '#MyBoard td'  ).css("background-color", "#84ccd6");
+    $( '#TheirBoard td'  ).css("background-color", "#84ccd6");
 
     displayShip(gameModel.aircraftCarrier);
     displayShip(gameModel.battleship);
@@ -102,16 +103,15 @@ function displayShip(ship){
  if(startCoordAcross > 0){
     if(startCoordAcross == endCoordAcross){
         for (i = startCoordDown; i <= endCoordDown; i++) {
-            $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-color", "yellow");
+            $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-color", "#25383c");
         }
     } else {
         for (i = startCoordAcross; i <= endCoordAcross; i++) {
-            $( '#MyBoard #'+i+'_'+startCoordDown  ).css("background-color", "yellow");
+            $( '#MyBoard #'+i+'_'+startCoordDown  ).css("background-color", "#25383c");
         }
     }
  }
 }
-
 
 function createGameBoards() {
   // Create table
@@ -121,10 +121,19 @@ function createGameBoards() {
   // Create squares
   for (var y = 1; y <= 10; y++){
     board.append("<tr id='Row" + y + "'>");
-    for (var x = 1; x <= 10; x++){
+    for (var x = 1; x <= 10; x++)
       board.append("<td id='" + y + "_" + x + "'>");
-    }
     board.append("</tr>");
   }
   board.append("</table>");
+}
+
+function setOnTouchEvents(){
+  for (var y = 1; y <= 10; y++){
+    for (var x = 1; x <= 10; x++)
+      $('.TheirBoard#' + y + '_' + x).on("tap", function() {
+        // fire(y, x);
+        $(this).hide();
+      })
+  }
 }
