@@ -9,7 +9,6 @@ $( document ).ready(function() {
 
   // Create gameBoards
   createGameBoards();
-  setOnTouchEvents();
 });
 
 function placeShip() {
@@ -161,15 +160,4 @@ function createGameBoards() {
     board.append("</tr>");
   }
   board.append("</table>");
-}
-
-function setOnTouchEvents(){
-  for (var y = 1; y <= 10; y++){
-    for (var x = 1; x <= 10; x++){
-      $('.TheirBoard#' + y + '_' + x).on("tap", function() {
-        // fire(y, x);
-        $(this).hide();
-      })
-    }
-  }
 }
