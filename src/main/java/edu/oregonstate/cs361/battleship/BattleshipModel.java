@@ -21,10 +21,12 @@ public class BattleshipModel {
     private Ship computer_destroyer = new Ship("Computer_Destroyer",2, new Coordinate(7,3),new Coordinate(7,5));
     private Ship computer_submarine = new Ship("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
 
-    private ArrayList<Coordinate> playerHits;
+    ArrayList<Coordinate> playerHits;
     private ArrayList<Coordinate> playerMisses;
-    private ArrayList<Coordinate> computerHits;
+    ArrayList<Coordinate> computerHits;
     private ArrayList<Coordinate> computerMisses;
+
+    boolean scanResult = false;
 
 
 
@@ -35,10 +37,6 @@ public class BattleshipModel {
         computerMisses= new ArrayList<>();
     }
 
-    public static BattleshipModel ofStatus(String statusStr) {
-        System.out.println("STRING");
-        return null;
-    }
 
     public Ship getShip(String shipName) {
         if (shipName.equalsIgnoreCase("aircraftcarrier")) {
@@ -56,36 +54,36 @@ public class BattleshipModel {
         }
     }
 
-    public BattleshipModel placeShip(String shipName, String row, String col, String orientation, BattleshipModel currModel) {
+    public BattleshipModel placeShip(String shipName, String row, String col, String orientation) {
         int rowint = Integer.parseInt(row);
         int colInt = Integer.parseInt(col);
         if(orientation.equals("horizontal")){
             if (shipName.equalsIgnoreCase("aircraftcarrier")) {
-                currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+5));
+                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+5));
             } if(shipName.equalsIgnoreCase("battleship")) {
-                currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
+                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
             } if(shipName.equalsIgnoreCase("Cruiser")) {
-                currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
+                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
             } if(shipName.equalsIgnoreCase("destroyer")) {
-                currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+2));
+                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+2));
             }if(shipName.equalsIgnoreCase("submarine")) {
-                currModel.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 2));
+                this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 2));
             }
         }else{
             //vertical
                 if (shipName.equalsIgnoreCase("aircraftcarrier")) {
-                    currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+5,colInt));
+                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+5,colInt));
                 } if(shipName.equalsIgnoreCase("battleship")) {
-                    currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
+                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
                 } if(shipName.equalsIgnoreCase("Cruiser")) {
-                    currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
+                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
                 } if(shipName.equalsIgnoreCase("destroyer")) {
-                    currModel.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+2,colInt));
+                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+2,colInt));
                 }if(shipName.equalsIgnoreCase("submarine")) {
-                    currModel.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 2, colInt));
+                    this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 2, colInt));
                 }
         }
-        return currModel;
+        return this;
     }
 
     public void shootAtComputer(int row, int col) {
@@ -106,8 +104,6 @@ public class BattleshipModel {
     }
 
     public void shootAtPlayer() {
-        double randomRow = Math.random() * 10 + 1;
-        double randomCol = Math.random() * 10 + 1;
         int max = 10;
         int min = 1;
         Random random = new Random();
@@ -115,10 +111,13 @@ public class BattleshipModel {
         int randCol = random.nextInt(max - min + 1) + min;
 
         Coordinate coor = new Coordinate(randRow,randCol);
+        playerShot(coor);
+    }
+
+    void playerShot(Coordinate coor) {
         if(playerMisses.contains(coor)){
             System.out.println("Dupe");
         }
-
 
         if(aircraftCarrier.covers(coor)){
             playerHits.add(coor);
@@ -133,5 +132,29 @@ public class BattleshipModel {
         } else {
             playerMisses.add(coor);
         }
+    }
+
+
+    public void scan(int rowInt, int colInt) {
+        Coordinate coor = new Coordinate(rowInt,colInt);
+        scanResult = false;
+        if(computer_aircraftCarrier.scan(coor)){
+            scanResult = true;
+        }
+        else if (computer_battleship.scan(coor)){
+            scanResult = true;
+        }else if (computer_cruiser.scan(coor)){
+            scanResult = true;
+        }else if (computer_destroyer.scan(coor)){
+            scanResult = true;
+        }else if (computer_submarine.scan(coor)){
+            scanResult = true;
+        } else {
+            scanResult = false;
+        }
+    }
+
+    public boolean getScanResult() {
+        return scanResult;
     }
 }
