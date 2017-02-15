@@ -129,8 +129,6 @@ function displayGameState(gameModel){
   displayShip(gameModel.submarine);
 }
 
-
-
 function displayShip(ship){
   startCoordAcross = ship.start.Across;
   startCoordDown = ship.start.Down;
@@ -167,10 +165,11 @@ function createGameBoards() {
 
 function setOnTouchEvents(){
   for (var y = 1; y <= 10; y++){
-    for (var x = 1; x <= 10; x++)
-    $('.TheirBoard#' + y + '_' + x).on("tap", function() {
-      // fire(y, x);
-      $(this).hide();
-    })
+    for (var x = 1; x <= 10; x++){
+      $('.TheirBoard#' + y + '_' + x).on("tap", function() {
+        // fire(y, x);
+        $(this).hide();
+      })
+    }
   }
 }

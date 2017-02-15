@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/js/app.js"></script>
 </head>
-<script src="/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="/js/app.js"></script>
 
 <body>
-
 <img src="https://i.kinja-img.com/gawker-media/image/upload/s--q7-OYhQY--/c_fit,fl_progressive,q_80,w_636/l99jnv2q4nmfssr3crp5.png" alt="MISSING" width="392" height="218">
-
 </img>
 
 <div class="container">
@@ -90,6 +88,7 @@
             </div>
             <BR>
         </div>
+
         <div class= "col-md-6">
             <whitetext>computer</whitetext>
             <div id="TheirBoard" class="gameBoard">
@@ -99,7 +98,7 @@
 
     <h1><whitetext>Fire:</whitetext></h1>
     <div id="FireDiv">
-        <whitetext Row: </whitetext>
+        <whitetext2>Row:</whitetext2>
         <select name="rowFire" id="rowFire">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -131,7 +130,7 @@
 
     <h1><whitetext>Scan:</whitetext></h1>
     <div id="ScanDiv">
-        <whitetext> Row: <whitetext>
+        <whitetext2>Row:</whitetext2>
         <select name="rowFire" id="rowScan">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -144,7 +143,7 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
-        <whitetext> Column: </whitetext>
+        <whitetext2> Column: </whitetext2>
         <select name="colFire" id="colScan">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -159,12 +158,8 @@
         </select>
         <button class="btn btn-default btn-xs"type="button" onclick="scan()">Scan</button>
     </div>
-
-</section>
 </body>
-<footer>
-    <br><br><br><br>
-</footer>
+
 <script>
    $('#TheirBoard td').click(function(event) {
    console.log("CLICK EVENT");
@@ -181,5 +176,4 @@
    });
 });
 </script>
-
 </html>
