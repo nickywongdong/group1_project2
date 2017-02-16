@@ -104,9 +104,9 @@ function displayGameState(gameModel){
 
   if(didPressScan) {
     if(gameModel.scanResult){
-      alert("Scan found at least one Ship");
+      $('footer #status').text("Scan found at least one Ship");
     } else {
-      alert("Scan found no Ships");
+      $('footer #status').text("Scan found no Ships");
     }
   }
 
@@ -170,13 +170,14 @@ function createGameBoards() {
 
     // // Display Coords in footer
     var coords = $(this).attr('id').split("_");
-    $('footer #status').text("Fired at " + coords[0] + ", " + coords[1]);
 
     // Fire or scan Coord
     if(didPressScan){
       scan(coords[0], coords[1]);
+            $('footer #status').text("Scaned " + coords[0] + ", " + coords[1]);
     } else {
       fire(coords[0], coords[1]);
+      $('footer #status').text("Fired at " + coords[0] + ", " + coords[1]);
     }
   });
 }
@@ -184,11 +185,13 @@ function createGameBoards() {
 /* Is called when the user presses 'scan' button */
 function pressedScan(){
   didPressScan = true;
+        $('footer #status').text("Selected Scan");
 }
 
 /* Is called when the user presses 'fire' button */
 function pressedFire(){
   didPressScan = false;
+        $('footer #status').text("Selected Fire");
 }
 
 /* Sets up the ship status box */
