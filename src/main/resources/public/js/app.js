@@ -11,6 +11,7 @@ $( document ).ready(function() {
 
   // Create gameBoards
   createGameBoards();
+  SetUpShipStatus();
 });
 
 /* Places Ship based on buttons that no longer exist */
@@ -129,11 +130,6 @@ function displayGameState(gameModel){
     $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
   }
 
-  displayShip(gameModel.aircraftCarrier);
-  displayShip(gameModel.battleship);
-  displayShip(gameModel.cruiser);
-  displayShip(gameModel.destroyer);
-  displayShip(gameModel.submarine);
 }
 
 /* Displays ship on MyBoard */
@@ -158,7 +154,6 @@ function displayShip(ship){
 
 /* Creates grid of 10 squares for MyBoard and TheirBoard */
 function createGameBoards() {
-  // Create table
   var table = $("<table>").appendTo('.gameBoard');
 
   // Create squares
@@ -169,15 +164,12 @@ function createGameBoards() {
     }
     table.append("</tr>");
   }
-  $("</table>").appendTo('.gameBoard');
 
   // Make grid touchable
   $('#TheirBoard').on("click", "td", function() {
 
-    // Parse coords
+    // // Display Coords in footer
     var coords = $(this).attr('id').split("_");
-
-    // Display Coords in footer
     $('footer #status').text("Fired at " + coords[0] + ", " + coords[1]);
 
     // Fire or scan Coord
@@ -197,4 +189,18 @@ function pressedScan(){
 /* Is called when the user presses 'fire' button */
 function pressedFire(){
   didPressScan = false;
+}
+
+/* Sets up the ship status box */
+function SetUpShipStatus(){
+  var shipLengths = [2, 2, 3, 4, 5];
+  var table = $("<table>").appendTo('#shipStatus');
+  for (var y = 0; y < 5; y++){
+    var tableRow = $("<tr id='Ship" + (y+1) + "'>").appendTo(table);
+    for (var x = 1; x <= shipLengths[y]; x++){
+      tableRow.append("<td id='" + (y+1) + "_" + x + "'></td>");
+    }
+    table.append("</tr>");
+  }
+  $("</table>").appendTo('.gameBoard');
 }
