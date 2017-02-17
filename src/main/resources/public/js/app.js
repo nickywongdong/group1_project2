@@ -46,6 +46,10 @@ function placeShip() {
 /* Fires at coordinates x, y */
 function fire(x, y){
 
+    /*var snakegun = new Audio('../../../css/sounds/snakegun.mp4');*/
+
+   /* snakegun.play();*/
+
   console.log(x);
   console.log(y);
   //var menuId = $( "ul.nav" ).first().attr( "id" );
@@ -185,6 +189,16 @@ function displayShip(ship){
 function createGameBoards() {
   var table = $("<table>").appendTo('.gameBoard');
 
+  var songdelay = 2600; //time in milliseconds, used for delaying song playing
+
+  var song= new Audio('../../../css/sounds/headbentover.m4a');
+  var show_me = new Audio('../../../css/sounds/show_me.mp4');
+  show_me.play();
+
+  setTimeout(function(){
+      song.play(songdelay);
+  }, songdelay);
+
   // Create squares
   for (var y = 1; y <= 10; y++){
     var tableRow = $("<tr id='Row" + y + "'>").appendTo(table);
@@ -207,6 +221,8 @@ function createGameBoards() {
     } else {
       fire(coords[0], coords[1]);
     }
+
+
   });
 }
 
