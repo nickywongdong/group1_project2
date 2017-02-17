@@ -56,6 +56,10 @@ html, body, table{
     overflow: hidden;
 }
 
+#MyBoard td {
+    background-size: 24px 24px;
+}
+
 #TheirBoard {
     width: 480px;
     height: 480px;
