@@ -52,7 +52,7 @@ html, body, table{
 
 #MyBoard {
     width: 240px;
-    height: 2400px;
+    height: 240px;
     overflow: hidden;
 }
 
@@ -114,6 +114,7 @@ whitetext {
     color: white;
     margin-left: auto;
     margin-right: 0;
+    white-space:pre;
 }
 
 whitetext2 {
