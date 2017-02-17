@@ -40,6 +40,7 @@ function placeShip() {
   request.fail(function( jqXHR, textStatus ) {
     alert( "Request failed: " + textStatus );
   });
+
 }
 
 /* Fires at coordinates x, y */
@@ -120,8 +121,8 @@ function log(logContents){
 /* Updates view */
 function displayGameState(gameModel){
 
-  $( '#MyBoard td'  ).css("background-color", "#25383C");
-  $( '#TheirBoard td'  ).css("background-color", "#25383C");
+  $( '#MyBoard td'  ).css("background-image", "images/rickhead.jpg");
+  $( '#TheirBoard td'  ).css("background-image", "images/mortyhead.png");
 
   if(didPressScan) {
     if(gameModel.scanResult){
@@ -139,10 +140,12 @@ function displayGameState(gameModel){
 
 
   for (var i = 0; i < gameModel.computerMisses.length; i++) {
-    $( '#TheirBoard #' + gameModel.computerMisses[i].Across + '_' + gameModel.computerMisses[i].Down ).css("background-color", "green");
+    $( '#TheirBoard #' + gameModel.computerMisses[i].Across + '_' + gameModel.computerMisses[i].Down ).css("background-image", "url(../../../css/images/rickhead.png)");
+
   }
   for (var i = 0; i < gameModel.computerHits.length; i++) {
-    $( '#TheirBoard #' + gameModel.computerHits[i].Across + '_' + gameModel.computerHits[i].Down ).css("background-color", "red");
+    $( '#TheirBoard #' + gameModel.computerHits[i].Across + '_' + gameModel.computerHits[i].Down ).css("background-image", "url(../../../css/images/mortyhead.png");
+    //snd = new Audio('../../../css/sounds/oh_man.wav');
   }
 
   for (var i = 0; i < gameModel.playerMisses.length; i++) {
@@ -152,6 +155,8 @@ function displayGameState(gameModel){
     $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
   }
 
+
+  //snd.play();
 
 }
 
@@ -165,11 +170,12 @@ function displayShip(ship){
   if(startCoordAcross > 0){
     if(startCoordAcross == endCoordAcross){
       for (i = startCoordDown; i <= endCoordDown; i++) {
-        $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-color", "#25383c");
+        $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-image", "url(../../../css/images/rickhead.png)");
+
       }
     } else {
       for (i = startCoordAcross; i <= endCoordAcross; i++) {
-        $( '#MyBoard #'+i+'_'+startCoordDown  ).css("background-color", "#25383c");
+        $( '#MyBoard #'+i+'_'+startCoordDown  ).css("background-color", "red");
       }
     }
   }
