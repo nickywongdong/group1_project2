@@ -172,7 +172,7 @@ function displayShip(ship){
   if(startCoordAcross > 0){
     if(startCoordAcross == endCoordAcross){
       for (i = startCoordDown; i <= endCoordDown; i++) {
-        $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-image", "url(../../../css/images/rickhead.png)");
+        $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-image", "url(../../../css/images/mortyhead.png)");
 
       }
     } else {
