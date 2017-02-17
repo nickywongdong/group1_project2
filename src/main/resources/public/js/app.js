@@ -1,5 +1,6 @@
 var gameModel;
 var didPressScan;
+var didPressPlaceShip;
 
 /* On page ready.. */
 $( document ).ready(function() {
@@ -198,6 +199,12 @@ function pressedScan(){
 function pressedFire(){
   didPressScan = false;
         $('footer #status').text("Selected Fire");
+}
+
+function pressedPlaceShip(){
+    didPressScan = false;
+    didPressPlaceShip = true;
+        $('footer #status').text("Placing Ships...");
 }
 
 /* Sets up the ship status box */
