@@ -121,6 +121,7 @@ public class BattleshipModel {
 
         if(aircraftCarrier.covers(coor)){
             playerHits.add(coor);
+
         }else if (battleship.covers(coor)){
             playerHits.add(coor);
         }else if (cruiser.covers(coor)){
