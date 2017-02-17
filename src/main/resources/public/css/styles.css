@@ -52,8 +52,12 @@ html, body, table{
 
 #MyBoard {
     width: 240px;
-    height: 2400px;
+    height: 240px;
     overflow: hidden;
+}
+
+#MyBoard td {
+    background-size: 24px 24px;
 }
 
 #TheirBoard {
@@ -92,8 +96,8 @@ footer {
 }
 
 footer button {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 4px;
+    margin-right: 4px;
     float: right;
 }
 
@@ -114,6 +118,7 @@ whitetext {
     color: white;
     margin-left: auto;
     margin-right: 0;
+    white-space:pre;
 }
 
 whitetext2 {
