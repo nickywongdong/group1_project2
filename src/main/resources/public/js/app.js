@@ -45,6 +45,7 @@ function placeShip() {
 
 /* Fires at coordinates x, y */
 function fire(x, y){
+
   console.log(x);
   console.log(y);
   //var menuId = $( "ul.nav" ).first().attr( "id" );
@@ -56,6 +57,23 @@ function fire(x, y){
     dataType: "json"
   });
 
+  //check if player has missed there yet
+  for (var i = 0; i < gameModel.computerMisses.length; i++) {
+    if(gameModel.computerMisses[i].Across == x && gameModel.computerMisses[i].Down == y){
+      console.log("made it into conditional 1");
+      $('footer #status').text("You have already fired at " + x + ", " + y);
+      return;
+    }
+  }
+  //check if player has hit there yet
+    for (var i = 0; i < gameModel.computerHits.length; i++) {
+      if(gameModel.computerHits[i].Across == x && gameModel.computerHits[i].Down == y){
+        console.log("made it into conditional 2");
+        $('footer #status').text("You have already fired at " + x + ", " + y);
+        return;
+      }
+    }
+
   request.done(function( currModel ) {
     displayGameState(currModel);
     gameModel = currModel;
@@ -65,6 +83,8 @@ function fire(x, y){
   request.fail(function( jqXHR, textStatus ) {
     alert( "Request failed: " + textStatus );
   });
+
+  $('footer #status').text("Fired at " + x + ", " + y);
 
 }
 
@@ -118,6 +138,7 @@ function displayGameState(gameModel){
   displayShip(gameModel.destroyer);
   displayShip(gameModel.submarine);
 
+
   for (var i = 0; i < gameModel.computerMisses.length; i++) {
     $( '#TheirBoard #' + gameModel.computerMisses[i].Across + '_' + gameModel.computerMisses[i].Down ).css("background-image", "url(../../../css/images/rickhead.png)");
 
@@ -133,6 +154,7 @@ function displayGameState(gameModel){
   for (var i = 0; i < gameModel.playerHits.length; i++) {
     $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
   }
+
 
   //snd.play();
 
@@ -181,10 +203,9 @@ function createGameBoards() {
     // Fire or scan Coord
     if(didPressScan){
       scan(coords[0], coords[1]);
-            $('footer #status').text("Scaned " + coords[0] + ", " + coords[1]);
+        $('footer #status').text("Scaned " + coords[0] + ", " + coords[1]);
     } else {
       fire(coords[0], coords[1]);
-      $('footer #status').text("Fired at " + coords[0] + ", " + coords[1]);
     }
   });
 }
