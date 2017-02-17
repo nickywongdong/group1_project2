@@ -1,6 +1,7 @@
 var gameModel;
 var didPressScan;
 var didPressPlaceShip;
+var didPressRotate = "horizontal";
 
 /* On page ready.. */
 $( document ).ready(function() {
@@ -16,12 +17,12 @@ $( document ).ready(function() {
 });
 
 /* Places Ship based on buttons that no longer exist */
-function placeShip(ship, x, y, orientX, orientY) {
-    if()
+function placeShip(ship, x, y) {
+    //if()
 
   //var menuId = $( "ul.nav" ).first().attr( "id" );
   var request = $.ajax({
-    url: "/placeShip/"+ship+"/"+x+"/"+y+"/"+orientation,
+    url: "/placeShip/"+ship+"/"+x+"/"+y+"/"+didPressRotate,
     method: "post",
     data: JSON.stringify(gameModel),
     contentType: "application/json; charset=utf-8",
@@ -221,18 +222,16 @@ function createGameBoards() {
 
     // // Display Coords in footer
     var coords = $(this).attr('id').split("_"); //works. Assigns coords to correct coordinates. Send to placeShip
-    var orientChoice = $(this).attr('id').split("_"); //assigns the block to the left or right of the square to determine orientation
-
 
     // Fire or scan Coord
     if(didPressPlaceShip){
-      $('footer #status').text( "Choose Start Coordinate On Small Board! Choose block to left for left orientation, above for vertical orientation, etc.");
+      $('footer #status').text(direction + "Choose Start Coordinate On Small Board! Choose block to left for left orientation, above for vertical orientation, etc.");
     } else {
         $('footer #status').text("That is not right.");
 
       }
 
-    placeShip(ship, coords[0], coords[1], orientChoiceX, orientChoiceY);
+    placeShip(ship, coords[0], coords[1]);
   })});
   // Make grid touchable to fire at
   $('#TheirBoard').on("click", "td", function() {
@@ -270,6 +269,14 @@ function pressedPlaceShip(){
         $('footer #status').text("Placing Ships...");
 }
 
+function pressedRotate(){
+    if(didPressRotate = "horizontal"){
+        didPressRotate = "vertical";
+    }
+    else{
+        didPressRotate = "horizontal";
+    }
+}
 /* Sets up the ship status box */
 function SetUpShipStatus(){
   var shipLengths = [2, 2, 3, 4, 5];
