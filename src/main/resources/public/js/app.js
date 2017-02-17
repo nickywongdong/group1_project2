@@ -43,9 +43,9 @@ function placeShip(ship, x, y, orientX, orientY) {
 /* Fires at coordinates x, y */
 function fire(x, y){
 
-    /*var snakegun = new Audio('../../../css/sounds/snakegun.mp4');*/
+   var lasergun = new Audio('../../../css/sounds/laser.m4a');
 
-   /* snakegun.play();*/
+   lasergun.play();
 
   console.log(x);
   console.log(y);
