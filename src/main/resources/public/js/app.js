@@ -5,6 +5,7 @@ var didPressRotate = "horizontal";
 
 /* On page ready.. */
 $( document ).ready(function() {
+    alert("INSTRUCTIONS: \n Press 'Place Ship' button at bottom\n Choose the ship to place, dispayed under 'computer ships remaining.' **Note: Must choose smallest ship first.\n Press 'Rotate Ship' to choose between Horizontal and Vertical. **Note: Default is Horizontal.\n Press 'Fire' to fire");
   // Handler for .ready() called.
   $.getJSON("model", function( json ) {
     gameModel = json;
