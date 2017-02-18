@@ -5,6 +5,7 @@ var didPressRotate = "horizontal";
 
 /* On page ready.. */
 $( document ).ready(function() {
+    alert("INSTRUCTIONS: \n Press 'Place Ship' button at bottom\n Choose the ship to place, dispayed under 'computer ships remaining.' **Note: Must choose smallest ship first.\n Press 'Rotate Ship' to choose between Horizontal and Vertical. **Note: Default is Horizontal.\n Press 'Fire' to fire");
   // Handler for .ready() called.
   $.getJSON("model", function( json ) {
     gameModel = json;
@@ -172,7 +173,7 @@ function displayShip(ship){
   if(startCoordAcross > 0){
     if(startCoordAcross == endCoordAcross){
       for (i = startCoordDown; i <= endCoordDown; i++) {
-        $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-image", "url(../../../css/images/rickhead.png)");
+        $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-image", "url(../../../css/images/mortyhead.png)");
 
       }
     } else {
